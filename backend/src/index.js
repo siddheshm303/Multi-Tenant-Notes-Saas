@@ -1,9 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/db');
 
+
 connectDB();
 
 const app = express();
+
+const cors = require('cors');
+app.use(cors());
+
 app.use(express.json());
 
 // Routes
