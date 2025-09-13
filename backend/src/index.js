@@ -8,7 +8,9 @@ app.use(express.json());
 
 // Routes
 app.use('/auth', require('./routes/auth.routes'));
+app.use('/notes', require('./routes/notes.routes'));
 
+// Health check
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 5000;

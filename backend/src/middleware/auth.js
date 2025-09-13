@@ -13,7 +13,7 @@ const protect = async (req, res, next) => {
       req.user = await User.findById(decoded.id).populate('tenant');
 
       if (!req.user) {
-        return res.status(401).json({ message: 'Not authorized, user not found' });
+        return res.status(401).json({ message: 'User not found' });
       }
 
       next();
