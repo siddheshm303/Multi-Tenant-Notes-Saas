@@ -3,6 +3,20 @@ const router = express.Router();
 const Tenant = require('../models/Tenant');
 const { protect, adminOnly } = require('../middleware/auth');
 
+// GET tenant by slug
+router.get('/:slug', protect, async (req, res) => {
+  try {
+    const tenant = await Tenant.findOne({ slug: req.params.slug });
+    if (!tenant) {
+      return res.status(404).json({ message: 'Tenant not found' });
+    }
+    res.json(tenant);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Upgrade subscription
 router.post('/:slug/upgrade', protect, adminOnly, async (req, res) => {
   try {

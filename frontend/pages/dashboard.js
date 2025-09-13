@@ -31,9 +31,11 @@ export default function Dashboard() {
     try {
       const n = await api('/notes', token);
       setNotes(n);
+
       // fetch latest tenant plan to reflect upgrades immediately
       const tenant = await api(`/tenants/${user.tenant}`, token);
       setTenantPlan(tenant.plan);
+
     } catch (err) {
       if (err.message === 'Not authorized, token failed' || err.message === 'No token, authorization denied') {
         logout();
@@ -107,7 +109,7 @@ export default function Dashboard() {
         <section className="create">
           <input placeholder="title" value={title} onChange={e=>setTitle(e.target.value)} />
           <textarea placeholder="content" value={content} onChange={e=>setContent(e.target.value)} />
-          <button onClick={createNote} disabled={freeReached && user?.role !== 'admin'}>Create note</button>
+          <button className='create-note-button' onClick={createNote} disabled={freeReached && user?.role !== 'admin'}>Create note</button>
         </section>
 
         {freeReached && (
@@ -128,18 +130,7 @@ export default function Dashboard() {
         </section>
       </main>
 
-      <style jsx>{`
-        .wrap { max-width:800px; margin:18px auto; padding:12px; }
-        header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
-        .btn { background:#ef4444; color:white; border:none; padding:8px 10px; border-radius:6px; cursor:pointer; }
-        .create { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
-        input, textarea { padding:8px; border-radius:6px; border:1px solid #ccc; }
-        textarea { min-height:80px; }
-        button.btn-primary { background:#2563eb; color:white; border:none; padding:8px 10px; border-radius:6px; cursor:pointer; margin-left:10px; }
-        .upgrade { padding:12px; border:1px dashed #f59e0b; border-radius:6px; margin-bottom:12px; background:#fff7ed; }
-        .msg { background:#e8f5e9; padding:8px; border-radius:6px; margin-bottom:12px; }
-        .list { margin-top:12px; }
-      `}</style>
+      
     </div>
   );
 }

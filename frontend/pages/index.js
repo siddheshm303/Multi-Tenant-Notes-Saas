@@ -32,7 +32,7 @@ export default function LoginPage() {
       <form onSubmit={submit} className="form">
         <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="email" required />
         <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="password" required />
-        <button type="submit" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
+        <button className='button-login' type="submit" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
         {err && <p className="err">{err}</p>}
       </form>
 
@@ -44,13 +44,6 @@ export default function LoginPage() {
         <code>user@globex.test / password</code>
       </p>
 
-      <style jsx>{`
-        .page { max-width:560px; margin:40px auto; padding:20px; }
-        .form { display:flex; flex-direction:column; gap:8px; }
-        input { padding:8px; border-radius:6px; border:1px solid #ccc; }
-        button { padding:8px 12px; border-radius:6px; border:none; background:#2563eb; color:white; cursor:pointer; }
-        .err { color: #b91c1c; }
-      `}</style>
     </div>
   );
 }
