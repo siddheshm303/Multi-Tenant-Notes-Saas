@@ -33,13 +33,19 @@ header {
     margin-bottom: 16px;
 }
 
-.btn {
+.btn-logout {
     background: #ef4444;
     color: white;
     border: none;
     padding: 8px 10px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: #b91c1c;
+    transition: all;
+    transition-duration: 0.3s;
 }
 
 .create {
@@ -151,11 +157,17 @@ button.button-login {
     margin-bottom: 8px;
 }
 
-.btn-danger {
+.btn-delete {
     background: #e53e3e;
     color: white;
     border: none;
     padding: 6px 10px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #c53030;
+    transition: all;
+    transition-duration: 0.3s;
 }

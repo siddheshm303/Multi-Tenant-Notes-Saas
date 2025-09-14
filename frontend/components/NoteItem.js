@@ -3,7 +3,7 @@ export default function NoteItem({ note, onDelete }) {
     <div className="note">
       <div className="note-head">
         <strong>{note.title || '(no title)'}</strong>
-        <button onClick={() => onDelete(note._id)} className="btn-danger">Delete</button>
+        <button onClick={() => onDelete(note._id)} className="btn-delete">Delete</button>
       </div>
       <p>{note.content}</p>
     </div>

@@ -99,7 +99,7 @@ export default function Dashboard() {
           <div>Logged in as: <strong>{user?.email}</strong> ({user?.role})</div>
         </div>
         <div>
-          <button onClick={logout} className="btn">Logout</button>
+          <button onClick={logout} className="btn-logout">Logout</button>
         </div>
       </header>
 
