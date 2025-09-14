@@ -138,6 +138,12 @@ button.button-login {
     cursor: pointer;
 }
 
+button.button-login:hover {
+    background: #1e40af;
+    transition: all;
+    transition-duration: 0.3s;
+}
+
 .err {
     color: #b91c1c;
 }
