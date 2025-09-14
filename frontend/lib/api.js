@@ -22,4 +22,10 @@ async function api(path, token, method = 'GET', body) {
   return data;
 }
 
-export { api, API_URL };
+// Invite user (Admin only)
+async function inviteUser(token, tenantSlug, email, role) {
+  return api(`/tenants/${tenantSlug}/invite`, token, 'POST', { email, role });
+}
+
+
+export { api, API_URL, inviteUser };

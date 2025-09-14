@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { api } from '../lib/api';
+import { api, inviteUser } from '../lib/api';
 import NoteItem from '../components/NoteItem';
 
 export default function Dashboard() {
@@ -13,6 +13,11 @@ export default function Dashboard() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState('');
+
+  // Invite form state
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteRole, setInviteRole] = useState('member');
+  const [inviting, setInviting] = useState(false);
 
   useEffect(() => {
     const t = localStorage.getItem('token');
@@ -89,6 +94,22 @@ export default function Dashboard() {
     router.push('/');
   }
 
+    // Invite user handler
+  async function handleInviteSubmit(e) {
+    e.preventDefault();
+    setInviting(true);
+    try {
+      await inviteUser(token, user.tenant, inviteEmail, inviteRole);
+      alert(`User ${inviteEmail} invited successfully (password = "password")`);
+      setInviteEmail('');
+      setInviteRole('member');
+    } catch (err) {
+      alert("Error inviting user: " + err.message);
+    } finally {
+      setInviting(false);
+    }
+  }
+
   const freeReached = tenantPlan === 'free' && notes.length >= 3;
 
   return (
@@ -122,6 +143,43 @@ export default function Dashboard() {
             )}
           </div>
         )}
+
+        {user?.role === "admin" && (
+        <div className="invite-container">
+          <h2 className="invite-title">Invite User</h2>
+          <form onSubmit={handleInviteSubmit} className="invite-form">
+            <input
+              type="email"
+              name="email"
+              placeholder="User email"
+              required
+              className="invite-input"
+              value={inviteEmail}
+              onChange={(e) => setInviteEmail(e.target.value)}
+            />
+            <select
+              name="role"
+              className="invite-select"
+              value={inviteRole}
+              onChange={(e) => setInviteRole(e.target.value)}
+            >
+              <option value="member">Member</option>
+              <option value="admin">Admin</option>
+            </select>
+            <button
+              type="submit"
+              className="invite-button"
+              disabled={inviting}
+            >
+              {inviting ? 'Inviting...' : 'Invite'}
+            </button>
+          </form>
+          <p className="invite-note">
+            Default password for invited users is <code>password</code>
+          </p>
+        </div>
+      )}
+
 
         <section className="list">
           {loading ? <p>Loading...</p> : (notes.length === 0 ? <p>No notes yet</p> :
