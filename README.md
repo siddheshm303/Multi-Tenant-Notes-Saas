@@ -2,6 +2,7 @@
 
 - A full-stack multi-tenant SaaS notes application built with Node.js, Express, MongoDB Atlas, Next.js, and JWT authentication.
 - Supports multiple tenants with strict data isolation, role-based access control, and subscription gating.
+<br>
 
 ## 🚀 Project Objective
 
@@ -18,6 +19,7 @@
   - Free Plan → max 3 notes per tenant.
 
   - Pro Plan → unlimited notes after upgrade.
+<br>
 
 ## 🛠️ Tech Stack
 
@@ -26,6 +28,7 @@
 - Frontend: Next.js (React), CSS
 
 - Deployment: Vercel (frontend & backend)
+<br>
 
 ## 🏢 Multi-Tenancy Approach
 
@@ -36,6 +39,7 @@ We used **shared schema with tenant ID column:**
 - Queries are always filtered by tenant, ensuring strict isolation.
 
 - This approach is scalable and keeps the schema simple.
+<br>
 
 ## 🔑 Test Accounts
 
@@ -47,6 +51,7 @@ All accounts use password: <code>password</code>
 | user@acme.test  | Member  | Acme |
 | admin@globex.test | Admin | Globex |
 | user@globex.test | Membar | Globex |
+<br>
 
 ## 🌐 Deployment URLs
 
@@ -55,6 +60,7 @@ All accounts use password: <code>password</code>
   - Health Check: <code>/health</code> → <code>{ "status": "ok" }</code>
 
 - Frontend: [https://multi-tenant-notes-saas-frontend.vercel.app](https://multi-tenant-notes-saas-frontend.vercel.app/)
+<br>
 
 ## 📌 Features
 
@@ -71,6 +77,7 @@ All accounts use password: <code>password</code>
 - Notes CRUD (Create, Read, Update, Delete)
 
 - Minimal frontend with login, notes listing, creation, deletion, and upgrade flow
+<br>
 
 ## 🖥️ Run Locally
 1. Clone repo
@@ -98,6 +105,7 @@ npm run dev
 ```
 
 Frontend runs at <code>http://localhost:3000</code>
+<br>
 
 ## 📂 Folder Structure
 ```
@@ -106,10 +114,12 @@ Multi-Tenant-Notes-Saas/
 │── frontend/    # Next.js + CSS frontend
 │── README.md
 ```
+<br>
 
 ## ✅ Health Check
 
 - GET <code>/health</code> → <code>{ "status": "ok" }</code>
+<br>
 
 ## 📜 License
 
