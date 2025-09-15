@@ -55,6 +55,10 @@ export default function Dashboard() {
 
   async function createNote() {
     setMsg('');
+    if (!title.trim() || !content.trim()) {
+    setMsg('Title and content are required.');
+    return;
+  }
     try {
       const created = await api('/notes', token, 'POST', { title, content });
       setNotes(prev => [created, ...prev]);
