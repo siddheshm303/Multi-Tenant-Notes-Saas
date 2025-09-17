@@ -149,6 +149,76 @@ Multi-Tenant-Notes-Saas/
 
 ---
 
+## 📖 API Documentation
+
+### Authentication
+
+#### Login
+- **POST** `/auth/login`
+- **Request Body**:
+  ```json
+  {
+    "email": "admin@acme.test",
+    "password": "password"
+  }
+  ```
+
+---
+
+### Notes Management
+
+#### Get All Notes
+- **GET** `/notes`
+- **Headers**:
+  - `Authorization: Bearer JWT_TOKEN`
+
+
+#### Create a Note
+- **POST** `/notes`
+- **Headers**:
+  - `Authorization: Bearer JWT_TOKEN`
+- **Request Body**:
+  ```json
+  {
+    "title": "New Note",
+    "content": "This is the content of the note."
+  }
+  ```
+
+
+#### Delete a Note
+- **DELETE** `/notes/:id`
+- **Headers**:
+  - `Authorization: Bearer JWT_TOKEN`
+
+
+### Tenant Management
+
+#### Upgrade Tenant Plan
+- **POST** `/tenants/:tenantId/upgrade`
+- **Headers**:
+  - `Authorization: Bearer JWT_TOKEN`
+
+
+---
+
+### User Management
+
+#### Invite User
+- **POST** `/users/invite`
+- **Headers**:
+  - `Authorization: Bearer JWT_TOKEN`
+- **Request Body**:
+  ```json
+  {
+    "email": "newuser@acme.test",
+    "role": "member"
+  }
+  ```
+
+
+---
+
 ## ✅ Health Check
 
 - **GET** `/health` → `{ "status": "ok" }`
